@@ -15,7 +15,7 @@ const Footer = () => {
               alt="Restaurant Aqui Logo"
             />
             <p className="text-gray-400 leading-relaxed text-sm uppercase tracking-wider">
-              Kalifornisch-Mexikanische Küche, Restaurant, Bar, Café im Donauzentrum, 1220 Wien.
+              Kalifornisch-Mexikanische Küche, Restaurant, Bar, Café in Wien Landstraße, 1030 Wien.
             </p>
             <div className="flex items-center space-x-5 pt-2">
               <a href="https://www.facebook.com/share/HQpPRHoyCLHhEAe7/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
@@ -33,15 +33,15 @@ const Footer = () => {
             <div className="space-y-4 text-sm">
               <div className="flex items-start space-x-4 text-gray-300">
                 <MapPin className="text-primary shrink-0" size={18} />
-                <span className="uppercase tracking-widest">Restaurant Aqui<br />Donauzentrum Wien</span>
+                <span className="uppercase tracking-widest">Restaurant Aqui<br />Schimmelgasse 11, 1030 Wien</span>
               </div>
               <div className="flex items-center space-x-4 text-gray-300">
                 <Phone className="text-primary shrink-0" size={18} />
-                <a href="tel:+436769479912" className="hover:text-primary transition-colors tracking-widest">(+43) 676 9479912</a>
+                <a href="tel:+436648105757" className="hover:text-primary transition-colors tracking-widest">+43 664 810 57 57</a>
               </div>
               <div className="flex items-center space-x-4 text-gray-300">
                 <Mail className="text-primary shrink-0" size={18} />
-                <a href="mailto:office@aqui-restaurant.at" className="hover:text-primary transition-colors tracking-widest">OFFICE@AQUI-RESTAURANT.AT</a>
+                <a href="mailto:reservierung@575sagmeister.at" className="hover:text-primary transition-colors tracking-widest">reservierung@575sagmeister.at</a>
               </div>
             </div>
           </div>
@@ -63,10 +63,19 @@ const Footer = () => {
             <h3 className="text-xs uppercase tracking-[0.3em] font-black text-primary">Information</h3>
             <ul className="space-y-3 text-sm uppercase tracking-widest">
               <li>
+                <Link href="/reservations" className="text-gray-300 hover:text-primary transition-colors">Reservierung</Link>
+              </li>
+              <li>
+                <Link href="/kontakt" className="text-gray-300 hover:text-primary transition-colors">Kontakt</Link>
+              </li>
+              <li>
                 <Link href="/impressum" className="text-gray-300 hover:text-primary transition-colors">Impressum</Link>
               </li>
               <li>
                 <Link href="/datenschutzerklaerung" className="text-gray-300 hover:text-primary transition-colors">Datenschutz</Link>
+              </li>
+              <li>
+                <Link href="/admin" className="text-gray-500 hover:text-primary transition-colors font-bold opacity-50">Admin Dashboard</Link>
               </li>
             </ul>
           </div>

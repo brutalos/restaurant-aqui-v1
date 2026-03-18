@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Facebook, Instagram } from 'lucide-react'
+import { Menu, X, Facebook, Instagram, ShoppingCart } from 'lucide-react'
+import { useCart } from '@/context/CartContext'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const { totalCount } = useCart()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,9 +19,11 @@ const Navbar = () => {
   }, [])
 
   const navLinks = [
-    { name: 'Speisekarte', href: '/speisekarte' },
+    { name: 'Speisekarte', href: '/menu' },
     { name: 'Getränkekarte', href: '/getraenkekarte' },
-    { name: 'Kontakt', href: '/#Kontakt' },
+    { name: 'Shop', href: '/shop' },
+    { name: 'Reservierung', href: '/reservations' },
+    { name: 'Kontakt', href: '/kontakt' },
   ]
 
   return (
@@ -47,6 +51,12 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="flex items-center space-x-4 ml-4">
+              <Link href="/cart" className={`relative p-2 transition-colors ${isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}`}>
+                <ShoppingCart size={22} strokeWidth={2.5} />
+                <span className={`absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-white ${totalCount > 0 ? 'block' : 'hidden'}`}>
+                  {totalCount}
+                </span>
+              </Link>
               <a href="https://www.facebook.com/share/HQpPRHoyCLHhEAe7/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className={isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}>
                 <Facebook size={18} />
               </a>
@@ -56,7 +66,13 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center space-x-4">
+            <Link href="/cart" className={`relative p-2 transition-colors ${isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}`}>
+              <ShoppingCart size={22} strokeWidth={2.5} />
+              <span className={`absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-white ${totalCount > 0 ? 'block' : 'hidden'}`}>
+                {totalCount}
+              </span>
+            </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`${isScrolled ? 'text-dark' : 'text-white'} hover:text-primary focus:outline-none`}

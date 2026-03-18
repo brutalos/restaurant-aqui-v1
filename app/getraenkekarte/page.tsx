@@ -17,89 +17,100 @@ const drinksData: DrinkSection[] = [
     items: [
       { name: "Espresso", price: "2,90" },
       { name: "Double Espresso", price: "4,80" },
-      { name: "Capuccino (G)", price: "" },
+      { name: "Macchiato (G)", price: "3,00" },
+      { name: "Cortado", price: "3,50" },
+      { name: "Capuccino (G)", price: "4,80" },
+      { name: "Melange (G)", price: "4,80" },
       { name: "Caffé Latte (G)", price: "5,10" },
+      { name: "Verlängerter", price: "4,60" },
       { name: "Heiße Schokolade (G)", price: "4,50" },
     ]
   },
   {
-    category: "Alkoholfreie Getränke",
+    category: "Soft Drinks",
     items: [
-      { name: "Coca Cola, Coca Cola Zero 0,33 L", price: "3,90" },
-      { name: "Kinley Tonic, Ginger Ale 0,25 L", price: "3,90" },
+      { name: "Coca Cola / Zero 0,33 L", price: "3,90" },
+      { name: "Fanta / Sprite 0,33 L", price: "3,90" },
+      { name: "Almdudler 0,33 L", price: "3,90" },
       { name: "Jarritos Mexican Cola 0,33 L", price: "4,90" },
-      { name: "Soda Zitrone 0,5 L", price: "4,10" },
+      { name: "Römerquelle 0,33 L", price: "3,40" },
+      { name: "Makava Iced Tea 0,33L", price: "3,80" },
+      { name: "Red Bull 0,25 L", price: "4,80" },
     ]
   },
   {
-    category: "Hausgemachte Limonaden",
+    category: "Limonaden",
     items: [
-      { name: "Mango-Maracuja Limonade 0,5 L", price: "6,90" },
-      { name: "Kokos-Melone Limonade 0,5 L", price: "6,90" },
-      { name: "Erdbeere-Zitrone Limonade 0,5 L", price: "6,90" },
-    ]
-  },
-  {
-    category: "Bier vom Fass",
-    items: [
-      { name: "Spaten München 0,5 L", price: "5,40" },
-      { name: "Bio Zwickl 0,5 L", price: "5,80" },
+      { name: "Mango-Maracuja 0,5 L", price: "6,90", desc: "Hausgemacht mit frischen Früchten" },
+      { name: "Kokos-Melone 0,5 L", price: "6,90", desc: "Erfrischend & Exotisch" },
+      { name: "Erdbeere-Zitrone 0,5 L", price: "6,90", desc: "Der Klassiker" },
     ]
   },
   {
     category: "Cocktails",
     items: [
-      { name: "MOJITO", price: "12,20", desc: "Havana Club 3 Anos, Rohrzucker, Limetten, Limettensaft, Minze, Sodawasser" },
-      { name: "STRAWBERRY MARGARITA", price: "12,20", desc: "Tequila, Triple Sec, Zitronensaft, Erdbeer-Creme" },
-      { name: "PORNSTAR MARTINI", price: "13,90", desc: "Gin, Limettensaft, Passionsfrucht-Creme, Shot Prosecco" },
-      { name: "PINA COLADA (G)", price: "12,50", desc: "Rum Weiß, Kokos-Creme, Ananassaft, Sahne" },
+      { name: "Mojito", price: "12,20", desc: "Havana Club 3 Anos, Rohrzucker, Limetten, Minze, Soda" },
+      { name: "Strawberry Margarita", price: "12,20", desc: "Tequila, Triple Sec, Zitronensaft, Erdbeere" },
+      { name: "Pornstar Martini", price: "13,90", desc: "Gin, Limettensaft, Passionsfrucht-Creme, Shot Prosecco" },
+      { name: "Pina Colada (G)", price: "12,50", desc: "Rum Weiß, Kokos-Creme, Ananassaft, Sahne" },
     ]
   }
 ]
 
 export default function GetraenkekartePage() {
   return (
-    <div className="bg-light min-h-screen pb-24">
-      {/* Header */}
-      <section className="relative py-32 bg-teal overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <img src="/images/aqui-blumen-e2c68ec9b0af.png" className="w-full h-full object-cover" alt="" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold text-white uppercase tracking-tighter">Getränkekarte</h1>
-          <div className="mt-6 flex justify-center items-center gap-4 text-accent">
-            <span className="h-px w-12 bg-accent"></span>
-            <span className="text-3xl">*</span>
-            <span className="h-px w-12 bg-accent"></span>
+    <div className="bg-dark text-white pt-40 pb-32 min-h-screen">
+      <div className="max-w-6xl mx-auto px-6">
+        <header className="mb-32">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b-8 border-primary pb-10">
+            <h1 className="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8]">
+              TRANKLN<br /><span className="text-primary italic">DRINKS</span>
+            </h1>
+            <div className="text-right">
+              <span className="block text-xs font-black uppercase tracking-[0.4em] text-primary mb-2">Liquid Gold</span>
+              <span className="block text-xl font-bold uppercase tracking-tight">Bar & Café</span>
+            </div>
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* Drinks Sections */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-[-4rem] relative z-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {drinksData.map((section, idx) => (
-            <div key={idx} className="bg-teal text-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-teal-900 flex flex-col h-full">
-              <h2 className="text-3xl font-black text-accent mb-10 border-b-4 border-white pb-2 inline-block self-start uppercase">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-32">
+          {drinksData.map((section) => (
+            <section key={section.category} className="space-y-12">
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white border-l-8 border-primary pl-6">
                 {section.category}
               </h2>
-              <div className="space-y-8 flex-grow">
-                {section.items.map((item, iidx) => (
-                  <div key={iidx} className="group">
-                    <div className="flex justify-between items-baseline gap-4 mb-1">
-                      <h3 className="text-lg font-bold group-hover:text-accent transition-colors">{item.name}</h3>
-                      <span className="text-accent font-black text-lg whitespace-nowrap">
-                        {item.price ? `€ ${item.price}` : ""}
+
+              <div className="space-y-8">
+                {section.items.map((item, idx) => (
+                  <div key={idx} className="group transition-all duration-300">
+                    <div className="flex justify-between items-baseline gap-6 mb-2">
+                      <h3 className="text-lg font-black uppercase tracking-widest group-hover:text-primary transition-colors">
+                        {item.name}
+                      </h3>
+                      <div className="h-[1px] flex-grow border-b border-white/10 mt-4"></div>
+                      <span className="text-lg font-black text-primary italic">
+                        {item.price}
                       </span>
                     </div>
                     {item.desc && (
-                      <p className="text-gray-400 text-xs leading-relaxed italic">{item.desc}</p>
+                      <p className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-bold">
+                        {item.desc}
+                      </p>
                     )}
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
           ))}
+        </div>
+
+        <div className="mt-40 bg-primary/10 p-12 md:p-20 text-center space-y-8 border-2 border-primary/20">
+          <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tighter">
+            Happy Hour? <span className="text-primary italic">Every Hour.</span>
+          </h3>
+          <p className="text-sm font-bold text-gray-400 uppercase tracking-[0.4em] max-w-2xl mx-auto leading-relaxed">
+            Genießen Sie unsere Auswahl an erstklassigen Getränken in entspannter Atmosphäre.
+          </p>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 datasource db {
   provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -11,20 +12,62 @@ model Category {
   id       String    @id @default(cuid())
   name     String
   slug     String    @unique
-  type     String    @default("food") // "food" or "drink"
-  items    Product[]
-  order    Int       @default(0)
+  products Product[]
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   name        String
   description String?
   price       Float
   imageUrl    String?
-  allergens   String?
-  category    Category @relation(fields: [categoryId], references: [id])
+  category    Category    @relation(fields: [categoryId], references: [id])
   categoryId  String
-  isSpecial   Boolean  @default(false)
-  order       Int      @default(0)
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  deliveryAddress String?
+  deliveryStreet  String?
+  deliveryCity    String?
+  deliveryPostCode String?
+  deliveryLat     Float?
+  deliveryLng     Float?
+  woltDeliveryFee Float?
+  stripeIntentId  String?
+  woltDeliveryId  String?
+  woltTrackingUrl String?
+  total           Float
+  status          String      @default("PENDING")
+  createdAt       DateTime    @default(now())
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  price     Float
+}
+
+model Reservation {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  type      String   @default("RESTAURANT")
+  date      DateTime
+  time      String
+  guests    Int
+  lanes     Int?
+  message   String?
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
 }
