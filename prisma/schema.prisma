@@ -1,0 +1,30 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String
+  slug     String    @unique
+  type     String    @default("food") // "food" or "drink"
+  items    Product[]
+  order    Int       @default(0)
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  allergens   String?
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  isSpecial   Boolean  @default(false)
+  order       Int      @default(0)
+}
