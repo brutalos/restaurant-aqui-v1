@@ -27,16 +27,12 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm py-2' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-primary shadow-lg py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/">
-              <img
-                className="h-10 md:h-12 w-auto"
-                src="/images/aqui-logo-quer-dca6fcd780f6.png"
-                alt="Restaurant Aqui Logo"
-              />
+            <Link href="/" className="flex items-center space-x-3">
+              <span className="font-playfair text-2xl md:text-3xl font-bold text-accent tracking-widest italic">AQUI</span>
             </Link>
           </div>
           
@@ -45,37 +41,37 @@ const Navbar = () => {
               <Link 
                 key={link.name} 
                 href={link.href} 
-                className={`text-sm uppercase tracking-widest font-semibold transition-colors ${isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}`}
+                className={`text-sm uppercase tracking-widest font-semibold transition-colors text-white hover:text-accent`}
               >
                 {link.name}
               </Link>
             ))}
             <div className="flex items-center space-x-4 ml-4">
-              <Link href="/cart" className={`relative p-2 transition-colors ${isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}`}>
+              <Link href="/cart" className="relative p-2 transition-colors text-white hover:text-accent">
                 <ShoppingCart size={22} strokeWidth={2.5} />
-                <span className={`absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-white ${totalCount > 0 ? 'block' : 'hidden'}`}>
+                <span className={`absolute -top-1 -right-1 bg-accent text-primary text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-primary ${totalCount > 0 ? 'block' : 'hidden'}`}>
                   {totalCount}
                 </span>
               </Link>
-              <a href="https://www.facebook.com/share/HQpPRHoyCLHhEAe7/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className={isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}>
+              <a href="https://www.facebook.com/share/HQpPRHoyCLHhEAe7/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent">
                 <Facebook size={18} />
               </a>
-              <a href="https://www.instagram.com/aqui_calimex" target="_blank" rel="noopener noreferrer" className={isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}>
+              <a href="https://www.instagram.com/aqui_calimex" target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent">
                 <Instagram size={18} />
               </a>
             </div>
           </div>
 
           <div className="md:hidden flex items-center space-x-4">
-            <Link href="/cart" className={`relative p-2 transition-colors ${isScrolled ? 'text-dark hover:text-primary' : 'text-white hover:text-primary'}`}>
+            <Link href="/cart" className="relative p-2 transition-colors text-white hover:text-accent">
               <ShoppingCart size={22} strokeWidth={2.5} />
-              <span className={`absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-white ${totalCount > 0 ? 'block' : 'hidden'}`}>
+              <span className={`absolute -top-1 -right-1 bg-accent text-primary text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-primary ${totalCount > 0 ? 'block' : 'hidden'}`}>
                 {totalCount}
               </span>
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`${isScrolled ? 'text-dark' : 'text-white'} hover:text-primary focus:outline-none`}
+              className="text-white hover:text-accent focus:outline-none"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -84,10 +80,10 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden bg-white absolute top-0 left-0 w-full h-screen transition-all duration-500 flex flex-col items-center justify-center space-y-8 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      <div className={`md:hidden bg-primary absolute top-0 left-0 w-full h-screen transition-all duration-500 flex flex-col items-center justify-center space-y-8 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 text-dark hover:text-primary"
+          className="absolute top-6 right-6 text-white hover:text-accent"
         >
           <X size={32} />
         </button>
@@ -95,17 +91,17 @@ const Navbar = () => {
           <Link
             key={link.name}
             href={link.href}
-            className="text-2xl uppercase tracking-[0.2em] font-bold text-dark hover:text-primary"
+            className="text-2xl uppercase tracking-[0.2em] font-bold text-white hover:text-accent font-playfair"
             onClick={() => setIsOpen(false)}
           >
             {link.name}
           </Link>
         ))}
         <div className="flex items-center space-x-8 pt-8">
-          <a href="https://www.facebook.com/share/HQpPRHoyCLHhEAe7/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className="text-dark hover:text-primary">
+          <a href="https://www.facebook.com/share/HQpPRHoyCLHhEAe7/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent">
             <Facebook size={24} />
           </a>
-          <a href="https://www.instagram.com/aqui_calimex" target="_blank" rel="noopener noreferrer" className="text-dark hover:text-primary">
+          <a href="https://www.instagram.com/aqui_calimex" target="_blank" rel="noopener noreferrer" className="text-white hover:text-accent">
             <Instagram size={24} />
           </a>
         </div>

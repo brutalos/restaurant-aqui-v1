@@ -1,0 +1,9 @@
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.17.0.11:3000
+- Environments: .env.local, .env
+
+✓ Starting...
+⨯ Unable to acquire lock at /app/.next/dev/lock, is another instance of next dev running?
+  Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h

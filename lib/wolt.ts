@@ -21,8 +21,6 @@ export interface WoltPromise {
   };
   price: { amount: number; currency: string };
   is_binding: boolean;
-  time_estimate_minutes: number;
-  dropoff_eta_minutes?: number;
 }
 
 export interface WoltDelivery {
@@ -73,29 +71,7 @@ export async function getShipmentPromise(params: {
 }
 
 // --- Create Delivery ---
-export async function createDelivery(params: {
-  shipment_promise_id: string;
-  merchant_order_reference_id: string;
-  order_number?: string;
-  recipient: { name: string; phone_number: string; email?: string };
-  dropoff: {
-    location: {
-      coordinates: { lat: number; lon: number };
-    };
-    comment?: string;
-    options?: { is_no_contact?: boolean };
-  };
-  parcels: Array<{
-    count: number;
-    description?: string;
-    identifier?: string;
-    dimensions?: { weight_gram?: number; width_cm?: number; height_cm?: number; depth_cm?: number };
-    price?: { amount: number; currency: string };
-    tags?: string[];
-  }>;
-  customer_support: { email: string; phone_number?: string; url?: string };
-  pickup?: { comment?: string };
-}): Promise<WoltDelivery> {
+export async function createDelivery(params: any): Promise<WoltDelivery> {
   if (!WOLT_DRIVE_API_KEY) throw new Error('WOLT_DRIVE_API_KEY is missing');
   if (!WOLT_DRIVE_VENUE_ID) throw new Error('WOLT_DRIVE_VENUE_ID is missing');
 
@@ -114,6 +90,33 @@ export async function createDelivery(params: {
   if (!response.ok) {
     const err = await response.text();
     throw new Error(`Wolt Delivery error ${response.status}: ${err}`);
+  }
+
+  return response.json();
+}
+
+// --- Cancel Delivery ---
+export async function cancelDelivery(
+  woltOrderReferenceId: string,
+  reason: string
+): Promise<{ status: string }> {
+  if (!WOLT_DRIVE_API_KEY) throw new Error('WOLT_DRIVE_API_KEY is missing');
+
+  const response = await fetch(
+    `${BASE_URL}/order/${woltOrderReferenceId}/status/cancel`,
+    {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${WOLT_DRIVE_API_KEY}`,
+      },
+      body: JSON.stringify({ reason }),
+    }
+  );
+
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`Wolt Cancel error ${response.status}: ${err}`);
   }
 
   return response.json();
